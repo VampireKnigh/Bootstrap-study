@@ -45,7 +45,7 @@ mytest1.html对bootstrap框架各种常见组件的使用
   <td>h4</td>
   <td>18px</td>
   <td>14*1.25</td>
-  <td>margin-top:10px;margin-bottom:10px;</td>
+  <td rowspan="3">margin-top:10px;margin-bottom:10px;</td>
   </tr>
   <tr>
   <td>h5</td>
@@ -213,13 +213,108 @@ margin-left: 0;
 1、LESS版本，请查阅code.less文件
 2、Sass版本，请查阅_code.scss文件
 ```.pre-scrollable```可以控制代码块区域最大高度为340px，一旦超出这个高度，就会在Y轴出现滚动条。
-```
+#####滚动代码
 .pre-scrollable {
 max-height: 340px;
 overflow-y: scroll;
 }
-```
 ####表格
 Bootstrap为表格提供了1种基础样式和4种附加样式以及1个支持响应式的表格。table-style.html详细可点击查看
 LESS版本，对应的文件是 tables.less
 Sass版本，对应的文件是 _tables.scss
+#####表格颜色
+<table>
+<tr>
+<th>类名</th>
+<th>描述</th>
+<th>对应的颜色</th>
+</tr>
+<tr>
+<td>.active</td>
+<td>表示当前活动的信息</td>
+<td>#f5f5f5</td>
+</tr>
+<tr>
+<td>.success</td>
+<td>表示成功或正确的行为</td>
+<td>#dff0d8</td>
+</tr>
+<tr>
+<td>.info</td>
+<td>表示中立的信息或行为</td>
+<td>#d9edf7</td>
+</tr>
+<tr>
+<td>.warning</td>
+<td>表示警告，需要特别注意</td>
+<td>#fcf8e3</td>
+</tr>
+<tr>
+<td>.danger</td>
+<td>表示危险或可能是错误的行为</td>
+<td>#f2dede</td>
+</tr>
+</table>
+只需要在&lt;tr&gt;或者&lt;td&gt;中添加类名就行，不过需要注意的是<em>鼠标悬浮状态时需要在table上加上.table-hover类</em>
+.table主要有三个作用：
+1. 给表格设置了```width:100%,margin-bottom:20px```以及设置单元内距
+2. 在thead底部设置了一个2px的浅灰实线并把元素的顶端与行中最低的元素的顶端对齐。```vertical-align:bottom;border-bottom:2px solid #ddd```
+3. 每个单元格td顶部设置了一个1px的浅灰实线```border-top:1px solid #ddd```并把元素的顶端与行中最高元素的顶端对齐vertical-align:top;
+#####斑马线表格
+只需要在&lt;table class="table"&gt;的基础上增加类名“.table-striped”即可：即tbody隔行有一个浅灰色的背景色
+```
+.table-striped>tbody>tr:nth-child(odd){
+ 	background-color:#f9f9f9
+ }
+```
+#####带边框的表格
+只需要在基础表格&lt;table class="table"&gt;基础上添加一个“.table-bordered”
+```
+.table-bordered {
+  border: 1px solid #ddd;/*整个表格设置边框*/
+}
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 1px solid #ddd; /*每个单元格设置边框*/
+}
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+  border-bottom-width: 2px;/*表头底部边框*/
+}
+```
+#####鼠标悬浮高亮的表格
+提供了一个“.table-hover”类名来实现这种表格效果。即为.active的颜色hover
+```
+.table-hover>tbody>tr:hover{background-color:#f5f5f5}
+```
+#####紧凑型表格
+Bootstrap中紧凑型的表格与基础表格差别不大，因为只是将单元格的内距padding由8px调至5px。
+```
+<div class="table-responsive">
+<table class="table table-bordered">
+   …
+</table>
+</div>
+```
+
+```
+.table-responsive{min-height:.01%;overflow-x:auto}
+ @media screen and (max-width:767px){
+ 	.table-responsive{
+ 		width:100%;margin-bottom:15px;overflow-y:hidden;-ms-overflow-style:-ms-autohiding-scrollbar;border:1px solid #ddd
+ 	}
+  .table-responsive>.table>thead>tr>th,.table-responsive>.table>tbody>tr>th,.table-responsive>.table>tfoot>tr>th,.table-responsive>.table>thead>tr>td,.table-responsive>.table>tbody>tr>td,.table-responsive>.table>tfoot>tr>td{
+ 		white-space:nowrap
+ 	}
+ }
+```
+最重要的是overflow-x:auto与white-space:nowrap两个属性控制横着的scroll
+###lesson3-表单
+####表单源码查询
+- LESS版本：对应源文件 forms.less
+- Sass版本：对应源文件 _forms.scss
+对于基础表单，Bootstrap并未对其做太多的定制性效果设计，仅仅对表单内的fieldset、legend、label标签进行了定制。
