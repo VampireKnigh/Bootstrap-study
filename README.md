@@ -45,7 +45,7 @@ mytest1.html对bootstrap框架各种常见组件的使用
   <td>h4</td>
   <td>18px</td>
   <td>14*1.25</td>
-  <td>margin-top:10px;margin-bottom:10px;</td>
+  <td rowspan="3">margin-top:10px;margin-bottom:10px;</td>
   </tr>
   <tr>
   <td>h5</td>
@@ -113,11 +113,11 @@ font-size: 21px;
   }
 }
 ```
-除此之外，Bootstrap还通过元素标签:<small>、<strong>给文本做突出样式处理。
+除此之外，Bootstrap还通过元素标签:&lt;small&gt;，&lt;strong&gt;给文本做突出样式处理。
 ####lesson2.4-粗体
-在普通的元素中我们一般通过font-weight设置为bold关键词给文本加粗。在Bootstrap中，可以使用<b>和<strong>标签让文本直接加粗。
+在普通的元素中我们一般通过font-weight设置为bold关键词给文本加粗。在Bootstrap中，可以使用&lt;b&gt;和&lt;strong&gt;标签让文本直接加粗。
 ####lesson2.5-斜体
-给元素设置样式font-style值为italic实现之外，在Bootstrap中还可以通过使用标签<em>或<i>来实现。
+给元素设置样式font-style值为italic实现之外，在Bootstrap中还可以通过使用标签&lt;em&gt;或&lt;i&gt;来实现。
 ####lesson2.6-text风格
 主要有如下：具体可以查看text-style.html
 - text-muted：提示，使用浅灰色（#999）
@@ -126,6 +126,8 @@ font-size: 21px;
 - text-info：通知信息，使用浅蓝色（#31708f）
 - text-warning：警告，使用黄色（#8a6d3b）
 - text-danger：危险，使用褐色（#a94442）
+
+
 ####lesson2.7-text对齐
 ```
 .text-left {
@@ -141,3 +143,178 @@ text-align: center;
 text-align: justify;
 }
 ```
+####lesson2.8-列表
+```
+ul,ol{
+margin-top:0;margin-bottom:10px;
+}
+ul ul,ol ul,ul ol,ol ol {
+  margin-bottom: 0;
+}
+```
+- .list-unstyled的css是 
+```
+padding-left:0;list-style:none;
+```
+- .list-inline的css是
+```
+.list-inline {
+padding-left: 0;
+margin-left: -5px;
+list-style: none;
+}
+.list-inline > li {
+display: inline-block;
+padding-right: 5px;
+padding-left: 5px;
+}
+```
+####定义列表
+```
+dl {
+margin-top: 0;
+margin-bottom: 20px;
+}
+dt,
+dd {
+line-height: 1.42857143;
+}
+dt {
+font-weight: bold;
+}
+dd {
+margin-left: 0;
+}
+```
+####水平定义列表
+```
+@media (min-width:768px){
+ 	.dl-horizontal dt{
+ 		float:left;width:160px;overflow:hidden;clear:left;text-align:right;text-overflow:ellipsis;white-space:nowrap
+ 	}
+ 	.dl-horizontal dd{
+ 		margin-left:180px
+ 	}
+  }
+ .dl-horizontal dd:before,.dl-horizontal dd:after{
+ display:table;content:" "
+ }
+```
+也就是说，只有屏幕大于768px的时候，添加类名“.dl-horizontal”才具有水平定义列表效果。其实现主要方式：
+1. 将dt设置了一个左浮动，并且设置了一个宽度为160px
+2. 将dd设置一个margin-left的值为180px，达到水平的效果
+3. 当标题宽度超过160px时，将会显示三个省略号
+####代码风格
+一般在个人博客上使用的较为频繁，用于显示代码的风格。在Bootstrap主要提供了三种代码风格：
+1、使用```<code></code>```来显示单行内联代码
+2、使用```<pre></pre>```来显示多行块代码
+3、使用```<kbd></kbd>```来显示用户输入代码
+预编译版本的Bootstrap将代码的样式单独提取出来：
+1、LESS版本，请查阅code.less文件
+2、Sass版本，请查阅_code.scss文件
+```.pre-scrollable```可以控制代码块区域最大高度为340px，一旦超出这个高度，就会在Y轴出现滚动条。
+#####滚动代码
+.pre-scrollable {
+max-height: 340px;
+overflow-y: scroll;
+}
+####表格
+Bootstrap为表格提供了1种基础样式和4种附加样式以及1个支持响应式的表格。table-style.html详细可点击查看
+LESS版本，对应的文件是 tables.less
+Sass版本，对应的文件是 _tables.scss
+#####表格颜色
+<table>
+<tr>
+<th>类名</th>
+<th>描述</th>
+<th>对应的颜色</th>
+</tr>
+<tr>
+<td>.active</td>
+<td>表示当前活动的信息</td>
+<td>#f5f5f5</td>
+</tr>
+<tr>
+<td>.success</td>
+<td>表示成功或正确的行为</td>
+<td>#dff0d8</td>
+</tr>
+<tr>
+<td>.info</td>
+<td>表示中立的信息或行为</td>
+<td>#d9edf7</td>
+</tr>
+<tr>
+<td>.warning</td>
+<td>表示警告，需要特别注意</td>
+<td>#fcf8e3</td>
+</tr>
+<tr>
+<td>.danger</td>
+<td>表示危险或可能是错误的行为</td>
+<td>#f2dede</td>
+</tr>
+</table>
+只需要在&lt;tr&gt;或者&lt;td&gt;中添加类名就行，不过需要注意的是<em>鼠标悬浮状态时需要在table上加上.table-hover类</em>
+.table主要有三个作用：
+1. 给表格设置了```width:100%,margin-bottom:20px```以及设置单元内距
+2. 在thead底部设置了一个2px的浅灰实线并把元素的顶端与行中最低的元素的顶端对齐。```vertical-align:bottom;border-bottom:2px solid #ddd```
+3. 每个单元格td顶部设置了一个1px的浅灰实线```border-top:1px solid #ddd```并把元素的顶端与行中最高元素的顶端对齐vertical-align:top;
+#####斑马线表格
+只需要在&lt;table class="table"&gt;的基础上增加类名“.table-striped”即可：即tbody隔行有一个浅灰色的背景色
+```
+.table-striped>tbody>tr:nth-child(odd){
+ 	background-color:#f9f9f9
+ }
+```
+#####带边框的表格
+只需要在基础表格&lt;table class="table"&gt;基础上添加一个“.table-bordered”
+```
+.table-bordered {
+  border: 1px solid #ddd;/*整个表格设置边框*/
+}
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 1px solid #ddd; /*每个单元格设置边框*/
+}
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+  border-bottom-width: 2px;/*表头底部边框*/
+}
+```
+#####鼠标悬浮高亮的表格
+提供了一个“.table-hover”类名来实现这种表格效果。即为.active的颜色hover
+```
+.table-hover>tbody>tr:hover{background-color:#f5f5f5}
+```
+#####紧凑型表格
+Bootstrap中紧凑型的表格与基础表格差别不大，因为只是将单元格的内距padding由8px调至5px。
+```
+<div class="table-responsive">
+<table class="table table-bordered">
+   …
+</table>
+</div>
+```
+
+```
+.table-responsive{min-height:.01%;overflow-x:auto}
+ @media screen and (max-width:767px){
+ 	.table-responsive{
+ 		width:100%;margin-bottom:15px;overflow-y:hidden;-ms-overflow-style:-ms-autohiding-scrollbar;border:1px solid #ddd
+ 	}
+  .table-responsive>.table>thead>tr>th,.table-responsive>.table>tbody>tr>th,.table-responsive>.table>tfoot>tr>th,.table-responsive>.table>thead>tr>td,.table-responsive>.table>tbody>tr>td,.table-responsive>.table>tfoot>tr>td{
+ 		white-space:nowrap
+ 	}
+ }
+```
+最重要的是overflow-x:auto与white-space:nowrap两个属性控制横着的scroll
+###lesson3-表单
+####表单源码查询
+- LESS版本：对应源文件 forms.less
+- Sass版本：对应源文件 _forms.scss
+对于基础表单，Bootstrap并未对其做太多的定制性效果设计，仅仅对表单内的fieldset、legend、label标签进行了定制。
