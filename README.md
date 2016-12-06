@@ -113,11 +113,11 @@ font-size: 21px;
   }
 }
 ```
-除此之外，Bootstrap还通过元素标签:<small>、<strong>给文本做突出样式处理。
+除此之外，Bootstrap还通过元素标签:&lt;small&gt;，&lt;strong&gt;给文本做突出样式处理。
 ####lesson2.4-粗体
-在普通的元素中我们一般通过font-weight设置为bold关键词给文本加粗。在Bootstrap中，可以使用<b>和<strong>标签让文本直接加粗。
+在普通的元素中我们一般通过font-weight设置为bold关键词给文本加粗。在Bootstrap中，可以使用&lt;b&gt;和&lt;strong&gt;标签让文本直接加粗。
 ####lesson2.5-斜体
-给元素设置样式font-style值为italic实现之外，在Bootstrap中还可以通过使用标签<em>或<i>来实现。
+给元素设置样式font-style值为italic实现之外，在Bootstrap中还可以通过使用标签&lt;em&gt;或&lt;i&gt;来实现。
 ####lesson2.6-text风格
 主要有如下：具体可以查看text-style.html
 - text-muted：提示，使用浅灰色（#999）
@@ -126,6 +126,8 @@ font-size: 21px;
 - text-info：通知信息，使用浅蓝色（#31708f）
 - text-warning：警告，使用黄色（#8a6d3b）
 - text-danger：危险，使用褐色（#a94442）
+
+
 ####lesson2.7-text对齐
 ```
 .text-left {
@@ -141,3 +143,83 @@ text-align: center;
 text-align: justify;
 }
 ```
+####lesson2.8-列表
+```
+ul,ol{
+margin-top:0;margin-bottom:10px;
+}
+ul ul,ol ul,ul ol,ol ol {
+  margin-bottom: 0;
+}
+```
+- .list-unstyled的css是 
+```
+padding-left:0;list-style:none;
+```
+- .list-inline的css是
+```
+.list-inline {
+padding-left: 0;
+margin-left: -5px;
+list-style: none;
+}
+.list-inline > li {
+display: inline-block;
+padding-right: 5px;
+padding-left: 5px;
+}
+```
+####定义列表
+```
+dl {
+margin-top: 0;
+margin-bottom: 20px;
+}
+dt,
+dd {
+line-height: 1.42857143;
+}
+dt {
+font-weight: bold;
+}
+dd {
+margin-left: 0;
+}
+```
+####水平定义列表
+```
+@media (min-width:768px){
+ 	.dl-horizontal dt{
+ 		float:left;width:160px;overflow:hidden;clear:left;text-align:right;text-overflow:ellipsis;white-space:nowrap
+ 	}
+ 	.dl-horizontal dd{
+ 		margin-left:180px
+ 	}
+  }
+ .dl-horizontal dd:before,.dl-horizontal dd:after{
+ display:table;content:" "
+ }
+```
+也就是说，只有屏幕大于768px的时候，添加类名“.dl-horizontal”才具有水平定义列表效果。其实现主要方式：
+1. 将dt设置了一个左浮动，并且设置了一个宽度为160px
+2. 将dd设置一个margin-left的值为180px，达到水平的效果
+3. 当标题宽度超过160px时，将会显示三个省略号
+####代码风格
+一般在个人博客上使用的较为频繁，用于显示代码的风格。在Bootstrap主要提供了三种代码风格：
+1、使用```<code></code>```来显示单行内联代码
+2、使用```<pre></pre>```来显示多行块代码
+3、使用```<kbd></kbd>```来显示用户输入代码
+预编译版本的Bootstrap将代码的样式单独提取出来：
+1、LESS版本，请查阅code.less文件
+2、Sass版本，请查阅_code.scss文件
+```.pre-scrollable```可以控制代码块区域最大高度为340px，一旦超出这个高度，就会在Y轴出现滚动条。
+```
+.pre-scrollable {
+max-height: 340px;
+overflow-y: scroll;
+}
+```
+####表格
+Bootstrap为表格提供了1种基础样式和4种附加样式以及1个支持响应式的表格。table-style.html详细可点击查看
+LESS版本，对应的文件是 tables.less
+Sass版本，对应的文件是 _tables.scss
